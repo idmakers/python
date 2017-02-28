@@ -1,24 +1,25 @@
 import cv2
 import numpy as np
 import math
+import random
 
 oriimage = cv2.imread("D:/WALLPAPER/GT7cdJQ.jpg")
-newx,newy = math.floor(oriimage.shape[1]/8),math.floor(oriimage.shape[0]/8) #new size (w,h)
+newx,newy = math.floor(oriimage.shape[1]/5),math.floor(oriimage.shape[0]/5) #new size (w,h)
 newimage = cv2.resize(oriimage,(newx,newy))
-gray =cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
-HSV =cv2.cvtColor(newimage, cv2.COLOR_BGR2HSV)
-RGB =cv2.cvtColor(newimage, cv2.COLOR_BGR2RGB)
-YCrCb =cv2.cvtColor(newimage, cv2.COLOR_BGR2YCrCb)
-XYZ =cv2.cvtColor(newimage, cv2.COLOR_BGR2XYZ)
-HLS =cv2.cvtColor(newimage, cv2.COLOR_BGR2HLS)
-CIE =cv2.cvtColor(newimage, cv2.COLOR_BGR2Lab)
+faceCascade = cv2.CascadeClassifier('C:\opencv-build\install\etc\haarcascades\haarcascade_frontalface_default.xml')
+gray = cv2.cvtColor(newimage,cv2.COLOR_BGR2GRAY)
+faces = faceCascade.detectMultiScale(
+    gray,
+    scaleFactor = 1.1,
+    minNeighbors = 5,
+    minSize = (10,10),
+    flags = cv2.CASCADE_SCALE_IMAGE
+)
+print (faces)
 
-cv2.imshow("bgr2gray",gray)
-cv2.imshow("bgr2HSV",HSV)
-cv2.imshow("bgr2RGB",RGB)
-cv2.imshow("BGR2YCbCr",YCrCb)
-cv2.imshow("BGR2XYZ",XYZ)
-cv2.imshow("BGR2HLS",HLS)
-cv2.imshow("BGR2CIE",CIE)
+font = cv2.FONT_HERSHEY_SIMPLEX
+for(x,y,w,h) in faces:
+    cv2.rectangle(newimage,(x,y),(x+w,y+h),(14,201,255),2)
+
 cv2.imshow("resize image",newimage)
 cv2.waitKey(0)
