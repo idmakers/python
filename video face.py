@@ -1,16 +1,18 @@
 import numpy as np
 import cv2
+import math
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('D:/123.mp4')
 # face
-#faceCascade = cv2.CascadeClassifier('C:\opencv-build\install\etc\haarcascades\haarcascade_frontalface_default.xml')
+faceCascade = cv2.CascadeClassifier('C:\opencv-build\install\etc\haarcascades\haarcascade_frontalface_default.xml')
 while(True):
     # Capture frame-by-frame
     ret, newimage = cap.read()
+    newx,newy = math.floor(newimage.shape[1]/2),math.floor(newimage.shape[0]/2) #new size (w,h)
+    resize = cv2.resize(newimage ,(newx,newy))
 
     # Our operations on the frame come here
-    '''
-    gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(resize, cv2.COLOR_BGR2GRAY)
 # face detect
     faces = faceCascade.detectMultiScale(
         gray,
@@ -23,10 +25,10 @@ while(True):
 
     font = cv2.FONT_HERSHEY_SIMPLEX
     for(x,y,w,h) in faces:
-        cv2.rectangle(newimage,(x,y),(x+w,y+h),(14,201,255),2)
-'''
+        cv2.rectangle(resize,(x,y),(x+w,y+h),(14,201,255),2)
+
     # Display the resulting frame
-    cv2.imshow('frame',newimage)
+    cv2.imshow('frame',resize)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

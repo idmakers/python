@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import math
 
-oriimage = cv2.imread("D:/WALLPAPER/GT7cdJQ.jpg")
+oriimage = cv2.imread("your file path")
 newx,newy = math.floor(oriimage.shape[1]/8),math.floor(oriimage.shape[0]/8) #new size (w,h)
 newimage = cv2.resize(oriimage,(newx,newy))
 gray =cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
