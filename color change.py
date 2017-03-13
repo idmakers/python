@@ -2,7 +2,11 @@ import cv2
 import numpy as np
 import math
 
-oriimage = cv2.imread("your file path")
+name = input('請輸入檔名：')
+file = open(name, 'r', encoding='UTF-8')
+
+
+oriimage = cv2.imread(file)
 newx,newy = math.floor(oriimage.shape[1]/8),math.floor(oriimage.shape[0]/8) #new size (w,h)
 newimage = cv2.resize(oriimage,(newx,newy))
 gray =cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
@@ -22,3 +26,5 @@ cv2.imshow("BGR2HLS",HLS)
 cv2.imshow("BGR2CIE",CIE)
 cv2.imshow("resize image",newimage)
 cv2.waitKey(0)
+file.close()
+

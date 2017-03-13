@@ -8,6 +8,7 @@ def click(x,y):
 
 flags, hcursor, (x,y) = win32gui.GetCursorInfo()
 print(x,y)
+'''
 click(1513,734)
 time.sleep(2)
 click(1705,705)
@@ -16,3 +17,4 @@ click(1705,705)
 time.sleep(2)
 click(1705,705)
 time.sleep(2)
+'''

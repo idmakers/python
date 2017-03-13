@@ -3,14 +3,15 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 # face
-#faceCascade = cv2.CascadeClassifier('C:\opencv-build\install\etc\haarcascades\haarcascade_frontalface_default.xml')
+faceCascade = cv2.CascadeClassifier('C:\opencv-build\install\etc\haarcascades\haarcascade_frontalface_default.xml')
 while(True):
     # Capture frame-by-frame
     ret, newimage = cap.read()
 
     # Our operations on the frame come here
-    '''
+
     gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
+
 # face detect
     faces = faceCascade.detectMultiScale(
         gray,
@@ -24,9 +25,9 @@ while(True):
     font = cv2.FONT_HERSHEY_SIMPLEX
     for(x,y,w,h) in faces:
         cv2.rectangle(newimage,(x,y),(x+w,y+h),(14,201,255),2)
-'''
+
     # Display the resulting frame
-    cv2.imshow('frame',newimage)
+    cv2.imshow('frame',gray)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
