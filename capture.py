@@ -3,7 +3,7 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 # face
-faceCascade = cv2.CascadeClassifier('C:\opencv-build\install\etc\haarcascades\haarcascade_frontalface_default.xml')
+faceCascade = cv2.CascadeClassifier('C:/Users/IDMAKERS/Desktop/data/haarcascades/haarcascade_frontalface_default.xml')
 while(True):
     # Capture frame-by-frame
     ret, newimage = cap.read()
@@ -27,7 +27,7 @@ while(True):
         cv2.rectangle(newimage,(x,y),(x+w,y+h),(14,201,255),2)
 
     # Display the resulting frame
-    cv2.imshow('frame',gray)
+    cv2.imshow('frame',newimage)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

@@ -1,5 +1,7 @@
 import ctypes
 import time
+import cv2
+#from  PIL import Image
 from ctypes.wintypes import *
 import win32clipboard
 from win32con import *
@@ -58,9 +60,13 @@ bmfh.bfSize = SIZEOF_BITMAPFILEHEADER + len(data)  # file size
 SIZEOF_COLORTABLE = 0
 bmfh.bfOffBits = SIZEOF_BITMAPFILEHEADER + SIZEOF_BITMAPINFOHEADER + SIZEOF_COLORTABLE
 
-bmp_filename = 'ScreenShot_'+time.strftime("%Y-%m-%d_%H%M%S")+'.jpg'
+bmp_filename = 'ScreenShot_'+time.strftime("%Y-%m-%d_%H%M%S")+'.bmp'
 with open(bmp_filename, 'wb') as bmp_file:
     bmp_file.write(bmfh)
     bmp_file.write(data)
+im = cv2.imread('ScreenShot_'+time.strftime("%Y-%m-%d_%H%M%S")+'.bmp')
+cv2.imwrite('ScreenShot_'+time.strftime("%Y-%m-%d_%H%M%S")+'.jpg',im)
+#im = Image.open('ScreenShot_'+time.strftime("%Y-%m-%d_%H%M%S")+'.bmp')
+#im.save('ScreenShot_'+time.strftime("%Y-%m-%d_%H%M%S")+'.jpg',"JPEG")
 
 print('file "{}" created from clipboard image'.format(bmp_filename))
