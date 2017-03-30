@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import math
 
-cap = cv2.VideoCapture('D:/123.mp4')
+cap = cv2.VideoCapture('D:/1234.mp4')
 #faceCascade = cv2.CascadeClassifier('C:\opencv-build\install\etc\haarcascades\haarcascade_frontalface_default.xml')
 while(cap.isOpened()):
     ret, frame = cap.read()
