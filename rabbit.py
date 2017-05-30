@@ -8,10 +8,10 @@ import codecs
 
 filename = filedialog.askopenfile()
 print(filename.name)
-for l in range(2,100,50):
+for l in range(2,10,2):
     img1 = cv2.imread(filename.name)
     img2 = cv2.imread("D:/WALLPAPER/tumblr_o363gaRyQw1uwi0lpo1_500.png")
-    newx1,newy1 = math.floor(img1.shape[1]*l),math.floor(img1.shape[0]*l) #new size (w,h)
+    newx1,newy1 = math.floor(img1.shape[1]/l),math.floor(img1.shape[0]/l) #new size (w,h)
     img1= cv2.resize(img1,(newx1,newy1))
     if img1.shape[1]<img1.shape[0]:
         newx,newy = math.floor((newy1/2.6)),math.floor(newx1/1.6)

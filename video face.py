@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import math
 
-cap = cv2.VideoCapture('D:/123.mp4')
+cap = cv2.VideoCapture(0)
 img2 = cv2.imread("D:/WALLPAPER/tumblr_o363gaRyQw1uwi0lpo1_500.png")
 # face
 faceCascade = cv2.CascadeClassifier('./data/haarcascades/haarcascade_frontalface_default.xml')
@@ -29,7 +29,7 @@ while(True):
 
     font = cv2.FONT_HERSHEY_SIMPLEX
     for(x,y,w,h) in faces:
-        cv2.rectangle(img1,(x,y),(x+w,y+h),(14,201,255),2)
+        cv2.rectangle(img1,(x,y),(x+w,y+h),(20,201,255),2)
         rowsx = 0
         tempy = math.floor(y/2)
         colsy = math.floor(tempy - 50/175*tempy)+10
