@@ -11,7 +11,7 @@ while(True):
     ret, newimage = cap.read()
     newx1,newy1 = math.floor(newimage.shape[1]),math.floor(newimage.shape[0]) #new size (w,h)
     img1= cv2.resize(newimage ,(newx1,newy1))
-    newx,newy = math.floor((newx1/5)),math.floor(newy1/5)
+    newx,newy = math.floor((newx1/10)),math.floor(newy1/10)
     img2= cv2.resize(img2,(newx,newy))
 
     # Our operations on the frame come here
