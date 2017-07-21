@@ -16,7 +16,7 @@ while(True):
 
     # Our operations on the frame come here
     gray = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-
+#test
     # face detect
     faces = faceCascade.detectMultiScale(
         gray,
