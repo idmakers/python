@@ -7,6 +7,7 @@ cap = cv2.VideoCapture(0)
 while(cap.isOpened()):
     ret, frame = cap.read()
 
+
     newx,newy = math.floor(frame.shape[1]/2),math.floor(frame.shape[0]/2) #new size (w,h)
     newimage = cv2.resize(frame ,(newx,newy))
     gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
