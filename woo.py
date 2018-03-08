@@ -1,14 +1,20 @@
 import time
 from selenium import webdriver
-for i in range(1,10,1):
-    driver = webdriver.Chrome('C:/Users/idmakers/AppData/Local/Programs/Python/Python35/chromedriver.exe')  # Optional argument, if not specified will search path.
-    driver.get('https://wootalk.today/key/%E6%88%90%E4%BA%BA%E6%A8%A1%E5%BC%8F');
-    time.sleep(5) # Let the user actually see something!
-    start= driver.find_element_by_id('startButton')
+
+
+for i in range(1,2,1):
+    driver = webdriver.Chrome('C:/Users/idmakers/AppData/Local/Programs/Python/Python36/chromedriver.exe')  # Optional argument, if not specified will search path.
+    driver.get('https://stucis.ttu.edu.tw/login.php');
+    schoolID = driver.find_element_by_name('ID')
+    schoolID.send_keys('410306234')
+    PWD = driver.find_element_by_name('PWD')
+    PWD.send_keys('10timmy10')
+    start= driver.find_element_by_name('Submit')
     start.click()
-    time.sleep(5)
-    search_box = driver.find_element_by_id('messageInput')
-    search_box.send_keys("187找色女")
-    send = driver.find_element_by_id('sendButton')
-    send.click()
-    time.sleep(5) # Let the user actually see something!
+    driver.get('https://stucis.ttu.edu.tw/menu/selmenu.htm');
+    driver.get('https://stucis.ttu.edu.tw/selcourse/FastSelect.php');
+    CLASS = driver.find_element_by_name('EnterSbj')
+    CLASS.send_keys('I4820\nW5530\nI4810\nG2740\nG4500\n')
+    start= driver.find_element_by_name('Submit')
+    start.click()
+    driver.quit

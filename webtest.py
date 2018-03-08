@@ -1,12 +1,17 @@
-import time
-from selenium import webdriver
+from bs4 import BeautifulSoup
+import requests
 
-driver = webdriver.Chrome('C:/Users/idmakers/AppData/Local/Programs/Python/Python35/chromedriver.exe')  # Optional argument, if not specified will search path.
-driver.get('http://vmus.co');
-time.sleep(5) # Let the user actually see something!
-search_box = driver.find_element_by_class_name('search-field')
-name = input('請輸入名稱')
-if(name != 0):
-    search_box.send_keys(name)
-    search_box.submit()
-    time.sleep(5) # Let the user actually see something!
+def get_web_page(url):
+    resp = requests.get(
+        url=url,
+        cookies={'over18': '1'}
+    )
+    if resp.status_code != 200:
+        print('Invalid url:', resp.url)
+        return None
+    else:
+        return resp.text
+
+page = get_web_page('https://www.ptt.cc/bbs/Beauty/index.html')
+if page:
+	print(page)
