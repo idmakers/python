@@ -2,8 +2,8 @@ import csv
 import sys
 
 orig_stdout = sys.stdout
-f1 = open('456.csv', 'r')
-f2 = open('123.csv', 'r')
+f1 = open('source.csv', 'r')
+f2 = open('des.csv', 'r')
 f3 = open('results.txt', 'w')
 sys.stdout = f3
 
