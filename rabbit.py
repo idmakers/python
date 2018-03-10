@@ -31,7 +31,7 @@ for l in range(2,10,2):
 
     font = cv2.FONT_HERSHEY_SIMPLEX
     for(x,y,w,h) in faces:
-        cv2.rectangle(img1,(x,y),(x+w,y+h),(14,201,255),2)
+        cv2.rectangle(img1,(x,y),(x+w,y+h),(100,201,255),2)
         #rowsx = math.floor((x+(w/2))-18)
         rowsx = 0
         tempy = math.floor(y/2)
