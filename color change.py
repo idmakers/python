@@ -1,10 +1,19 @@
 import cv2
 import numpy as np
 import math
+from tkinter import filedialog
+from tkinter import *
 
 
 
-oriimage = cv2.imread("D:/WALLPAPER/QAadYa1.jpg")
+
+root = Tk()
+root.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
+print (root.filename)
+
+
+
+oriimage = cv2.imread(root.filename)
 newx,newy = math.floor(oriimage.shape[1]/4),math.floor(oriimage.shape[0]/4) #new size (w,h)
 newimage = cv2.resize(oriimage,(newx,newy))
 gray =cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
