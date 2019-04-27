@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import math
 from tkinter import filedialog
-from tkinter import *
+from tkinter import Tk
 
 
 

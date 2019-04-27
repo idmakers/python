@@ -6,10 +6,18 @@ import random
 import time
 from six.moves import queue as Queue
 from threading import Thread
+from tkinter import filedialog
+from tkinter import Tk
+
+
+
+root = Tk()
+root.filename =  filedialog.askdirectory()
+print (root.filename)
  
 THREADS_NUM = 10      #多线程数量 
 PROXIES={'https': 'https://127.0.0.1:55555','http': 'http://127.0.0.1:55555'}
-DEFSAVEDIR='E:/twitter/'    #默认保存目录
+DEFSAVEDIR=root.filename    #默认保存目录
 HEADERS_LIST = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
     'Mozilla/5.0 (Windows; U; Windows NT 6.1; x64; fr; rv:1.9.2.13) Gecko/20101203 Firebird/3.6.13',
