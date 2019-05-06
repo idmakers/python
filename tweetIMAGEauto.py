@@ -10,14 +10,18 @@ from tkinter import filedialog
 from tkinter import Tk
 
 
-
+'''
 root = Tk()
 root.filename =  filedialog.askdirectory()
 print (root.filename)
- 
+root.open = filedialog.askopenfilename()
+f = open(root.open,"r")
+'''
+
 THREADS_NUM = 10      #多线程数量 
 PROXIES={'https': 'https://127.0.0.1:55555','http': 'http://127.0.0.1:55555'}
-DEFSAVEDIR=root.filename    #默认保存目录
+#DEFSAVEDIR=root.filename    
+DEFSAVEDIR='E:/twitter/' #默认保存目录
 HEADERS_LIST = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
     'Mozilla/5.0 (Windows; U; Windows NT 6.1; x64; fr; rv:1.9.2.13) Gecko/20101203 Firebird/3.6.13',
@@ -28,9 +32,12 @@ HEADERS_LIST = [
 ]
 HEADERS = {'User-Agent': random.choice(HEADERS_LIST)}   
 
-input_string = input("輸入要下載之推特帳號(可多個空白隔開)")
+#input_string = input("輸入要下載之推特帳號(可多個空白隔開)")
+f = open('E:/twitter/filename.txt','r')
+input_string = f.read()
 name  = input_string.split()
 name.extend("q")
+f.close
  
 class DownloadWorker(Thread):
     def __init__(self, queue, headers):
