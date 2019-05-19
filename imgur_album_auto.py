@@ -1,11 +1,19 @@
 #!/usr/bin/env python
 
+import tkinter
 import os
 import sys
 import json
 import argparse
 import urllib.request
+from tkinter import filedialog
+from tkinter import Tk
 from multiprocessing.dummy import Pool as ThreadPool
+
+
+
+
+
 
 
 class Options:
@@ -47,8 +55,11 @@ class Album:
 
 		response = json.loads(response.readlines()[0].decode('utf-8'))
 
+
 		# Get title and image links
-		title = response['data']['title']
+		title = response['data']['title'][12:35]
+
+		#title = root.path
 		if not title:
 			title = album_id
 
@@ -140,10 +151,14 @@ def main():
 	args = parser.parse_args() #get value from args
 
 	
+	
+	
 
 	if args.album_url:
 		if args.gather:
 			Options.gather = True
+			print(args.gather)
+			print(args.album_url)
 			generate_downloads(args.gather[0], args.album_url)
 		else:
 			generate_downloads(None, args.album_url)
