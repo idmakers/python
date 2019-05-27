@@ -31,13 +31,18 @@ HEADERS_LIST = [
     'Mozilla/5.0 (Windows NT 5.2; RW; rv:7.0a1) Gecko/20091211 SeaMonkey/9.23a1pre'
 ]
 HEADERS = {'User-Agent': random.choice(HEADERS_LIST)}   
+'''
+input_string = input("輸入要下載之推特帳號(可多個空白隔開)")
+name = input_string.split()
+name.extend("q")
+'''
 
-#input_string = input("輸入要下載之推特帳號(可多個空白隔開)")
 f = open('E:/twitter/filename.txt','r')
 input_string = f.read()
 name  = input_string.split()
 name.extend("q")
 f.close
+
  
 class DownloadWorker(Thread):
     def __init__(self, queue, headers):
@@ -128,14 +133,21 @@ class TwitterPicScraper(object):
                         b_newpic_exists = True
                 #保存的下载位置id在本次get返回列表数据中,但可能图片列表为空
                 if (str_nextapipos <= savedpos):
+                
                     if (list_picurl != []):
                         #不为空则在列表中，取出下标
-                        i = list_picurl.index('https://pbs.twimg.com/media/'+savedpicname)   #忘加上'https://pbs.twimg.com/media/' (2018.12.01编辑 )               
+                        if(('https://pbs.twimg.com/media/'+savedpicname)not in list_picurl):
+                           # i = list_picurl.index('https://pbs.twimg.com/media/'+str_newpicname)
+                           i= len(list_picurl)
+                        else:
+                            i = list_picurl.index('https://pbs.twimg.com/media/'+savedpicname)   #忘加上'https://pbs.twimg.com/media/' (2018.12.01编辑 )               
                         list_new_picurl = [x + ':orig' for x in list_picurl]
                         for picurl in list_new_picurl[:i]:
                             #len('https://pbs.twimg.com/media/')=28
                             picpath = os.path.join(self.userdir, picurl[28:47])  
                             self.queue.put((picurl, picpath))
+            
+                        
                     break               
                 else:
                     if (list_picurl != []):
@@ -166,4 +178,5 @@ if __name__ == "__main__":
                 break       
             else:   
                 TwitterPicScraper(user = username, headers=HEADERS)
+        input()
         break

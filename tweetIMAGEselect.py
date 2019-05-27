@@ -119,7 +119,11 @@ class TwitterPicScraper(object):
                 if (str_nextapipos <= savedpos):
                     if (list_picurl != []):
                         #不为空则在列表中，取出下标
-                        i = list_picurl.index('https://pbs.twimg.com/media/'+savedpicname)   #忘加上'https://pbs.twimg.com/media/' (2018.12.01编辑 )               
+                        if(('https://pbs.twimg.com/media/'+savedpicname)not in list_picurl):
+                           # i = list_picurl.index('https://pbs.twimg.com/media/'+str_newpicname)
+                           i= len(list_picurl)
+                        else:
+                            i = list_picurl.index('https://pbs.twimg.com/media/'+savedpicname)   #忘加上'https://pbs.twimg.com/media/' (2018.12.01编辑 )               
                         list_new_picurl = [x + ':orig' for x in list_picurl]
                         for picurl in list_new_picurl[:i]:
                             #len('https://pbs.twimg.com/media/')=28
